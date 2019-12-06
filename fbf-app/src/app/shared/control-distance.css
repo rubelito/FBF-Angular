@@ -1,0 +1,16 @@
+.margin-right-tenpixel {
+    margin-right: 10px;
+}
+
+.mat-raised-button.mat-small {
+    min-width: 1%;
+}
+
+.margin-top-tenpixel {
+    margin-top: 10px;
+}
+
+.divider-margin {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

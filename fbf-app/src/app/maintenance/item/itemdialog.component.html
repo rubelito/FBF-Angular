@@ -1,0 +1,66 @@
+<div class="container center-align">
+    <form #itemForm="ngForm" (ngSubmit)="onSave(itemForm.value)" autocomplete="off" novalidate>
+        <div class="row">
+            <div class="col m6">
+                <mat-form-field appearance="outline" (click)="showSupplierDialog()">
+                        <mat-label>Select supplier.....</mat-label>
+                    <input type="text" disabled="true" name="supplier" [ngModel]="supplier"
+                        matInput required>
+                    <input type="hidden" name="supplierId" [ngModel]="supplierId" required>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col m6">
+                <mat-form-field appearance="outline">
+                        <mat-label>Category</mat-label>
+                    <mat-select [(ngModel)]="selectedCategoryId" name="selectedCategoryId" required>
+                        <mat-option *ngFor="let cat of categories" [value]="cat.Id">{{cat.Name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col m6">
+                <mat-form-field appearance="outline">
+                    <mat-label>Threshold</mat-label>
+                    <input type="text" matInput OnlyNumber="true" name="item.Threshold" [(ngModel)]="item.Threshold" autocomplete="off"
+                        required>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col m6">
+                <mat-form-field appearance="outline">
+                    <mat-label>Item Desc.</mat-label>
+                    <input type="text" matInput name="item.Name" [(ngModel)]="item.Name" autocomplete="off" required>
+                </mat-form-field>
+
+            </div>
+            <div class="col m6">
+                <mat-form-field appearance="outline">
+                    <mat-label>Cost</mat-label>
+                    <input type="text" matInput OnlyNumber="true" name="item.Cost" [(ngModel)]="item.Cost" autocomplete="off" required>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col m6">
+                <mat-form-field appearance="outline">
+                    <mat-label>Measured by</mat-label>
+                    <mat-select placeHolder="Measured by" [(ngModel)]="selectedMeasuredbyId" name="selectedMeasuredbyId" required>
+                        <mat-option *ngFor="let m of measuredbys" [value]="m.Id">{{m.Name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col m6">
+                <mat-checkbox name="item.IsPhaseOut" [(ngModel)]="item.IsPhaseOut">Phase Out</mat-checkbox>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col m6">
+                <br><br>
+                <button class="margin-right-tenpixel" [disabled]="itemForm.invalid" mat-raised-button>Save</button>
+                <button type="button" class="margin-right-tenpixel" mat-raised-button (click)="onClickCancel()">Cancel</button>
+            </div>
+        </div>
+    </form>
+</div>

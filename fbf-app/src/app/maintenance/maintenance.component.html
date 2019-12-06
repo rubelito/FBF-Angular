@@ -1,0 +1,26 @@
+<div class="container center-align">
+    <div class="row">
+        <mat-card *ngIf="account.Role == 'Administrator' || account.Role == 'Member'" class="maintenance-card col s4" [routerLink]="['supplier']">
+            Supplier
+        </mat-card>
+        <mat-card *ngIf="account.Role == 'Administrator' || account.Role == 'Member'" class="maintenance-card col s4" [routerLink]="['customer']">
+            Customer
+        </mat-card>
+        <mat-card *ngIf="account.Role == 'Administrator' || account.Role == 'Member'" class="maintenance-card col s4" [routerLink]="['category']">
+            Category
+        </mat-card>
+    </div>
+    <div class="row">
+        <mat-card *ngIf="account.Role == 'Administrator' || account.Role == 'Member'" class="maintenance-card col s4" [routerLink]="['item']">
+            Item
+        </mat-card>
+        <mat-card class="maintenance-card col s4" [routerLink]="['changepassword']">
+            Change password
+        </mat-card>
+        <mat-card *ngIf="account.Role == 'Administrator' || account.Role == 'Member'" class="maintenance-card col s4" [routerLink]="['user']">
+            User
+        </mat-card>
+    </div>
+</div>
+
+<router-outlet></router-outlet>

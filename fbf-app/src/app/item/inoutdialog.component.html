@@ -1,0 +1,38 @@
+<p>{{operation}}</p>
+<div class="container center-align">
+    <form #inOutForm="ngForm">
+        <div class="col m6">
+            <div class="row">
+                <mat-form-field class="margin-right-tenpixel" appearance="outline">
+                    <mat-label>Item Desc</mat-label>
+                    <input type="text" matInput name="itemName" disabled [ngModel]="itemName">
+                </mat-form-field>
+                <!-- <span  class="margin-right-tenpixel">{{item}}</span> -->
+            </div>
+            <div class="row">
+                <mat-form-field class="margin-right-tenpixel" appearance="outline">
+                    <mat-label>Current Stocks</mat-label>
+                    <input type="text" matInput name="stocks" disabled [(ngModel)]="stocks">
+                </mat-form-field>
+            </div>
+            <div class="row">
+                <mat-form-field class="margin-right-tenpixel" appearance="outline">
+                    <mat-label>Quantity ({{measuredBy}})</mat-label>
+                    <input type="text" OnlyNumber="true" matInput name="quantity" [(ngModel)]="quantity" required>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="col m6">
+            <mat-form-field class="margin-right-tenpixel" appearance="outline">
+                <mat-label>Leave a note</mat-label>
+                <textarea class="in-out-note" matInput
+                 name="notes" [(ngModel)]="notes" required></textarea>
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <br><br>
+            <button mat-raised-button [disabled]="inOutForm.invalid" (click)="onInOut()">{{operation}}</button>
+            <button type="button" mat-raised-button (click)="onCancel()">Cancel</button>
+        </div>
+    </form>
+</div>

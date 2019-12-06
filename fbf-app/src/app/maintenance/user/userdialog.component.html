@@ -1,0 +1,34 @@
+<form #userForm="ngForm" (ngSubmit)="onSave(userForm.value)" autocomplete="off" novalidate>
+    <!-- <div mat-dialog-content> -->
+        <div class="row">
+            <p>{{title}}</p>
+        </div>
+        <div class="row">
+            <mat-form-field class="margin-right-tenpixel" appearance="outline">
+                <mat-label>UserName</mat-label>
+                <input type="text" [required]="operation == 'add'" [disabled]="operation == 'edit'" matInput name="user.UserName"
+                    [(ngModel)]="user.UserName">
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field class="margin-right-tenpixel" *ngIf="operation == 'add'" appearance="outline">
+                <mat-label>Password</mat-label>
+                <input type="text" [required]="operation == 'add'" matInput name="password" [(ngModel)]="password">
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-checkbox [disabled]="operation == 'add'" name="isActive" [(ngModel)]="isActive">Is Active</mat-checkbox>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Role</mat-label>
+                <mat-select [(ngModel)]="roleId" name="roleId" required>
+                    <mat-option *ngFor="let r of roles" [value]="r.Id">{{r.Name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <br>
+        <button mat-raised-button [disabled]="userForm.invalid">Save</button>
+        <button type="button" mat-raised-button (click)="onCancel()">Cancel</button>
+    <!-- </div> -->
+</form>

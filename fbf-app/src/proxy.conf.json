@@ -1,0 +1,11 @@
+// {
+//   "/maintenance": {
+//     "target": "http://192.168.232.132:81",
+//     "secure": false
+//   },
+//   "/account": {
+//     "target": "http://192.168.232.132:81",
+//     "secure": false
+//   }
+// }
+

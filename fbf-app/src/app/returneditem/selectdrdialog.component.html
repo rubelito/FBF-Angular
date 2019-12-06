@@ -1,0 +1,36 @@
+<div class="row">
+    <mat-form-field appearance="outline">
+        <mat-label>Search DR number....</mat-label>
+        <input type="text" name="drNumber" [(ngModel)]="drNumber" matInput>
+    </mat-form-field>
+    <button class="margin-right-tenpixel" (click)="searchDR()" mat-raised-button>Search</button>
+</div>
+<div class="row">
+    <table mat-table [dataSource]="records" class="mat-elevation-z8">
+        <ng-container matColumnDef="select">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element">
+                <span (click)="onSelect(element)" class="hand-curson green-background">Select</span>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>Id</th>
+            <td mat-cell *matCellDef="let element">{{element.Id}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="drnumber">
+            <th mat-header-cell *matHeaderCellDef>DR #</th>
+            <td mat-cell *matCellDef="let element">{{element.DROrSDR}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef>Date</th>
+            <td mat-cell *matCellDef="let element">{{element.Date}}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+    </table>
+</div>
+<button class="margin-right-tenpixel" (click)="onClose()" mat-raised-button>Close</button>

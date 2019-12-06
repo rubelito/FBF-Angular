@@ -1,0 +1,25 @@
+<div class="container left-align">
+    <form #loginForm="ngForm" autocomplete="off" novalidate>
+        <div>
+            <p>Login to your account</p>
+            <div class="row">
+                <span class="login-error" *ngIf="showError">{{message}}</span>
+                <br>
+                <mat-form-field class="margin-right-tenpixel" appearance="outline">
+                    <mat-label>User Name</mat-label>
+                    <input type="text" matInput name="username" [(ngModel)]="username" required>
+                </mat-form-field>
+            </div>
+            <div class="row">
+                <mat-form-field class="margin-right-tenpixel" appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input type="password" matInput name="password" [(ngModel)]="password" required>
+                </mat-form-field>
+            </div>
+        </div>
+        <div>
+            <button type="button" mat-raised-button [disabled]="loginForm.invalid" (click)="login()">Login</button>
+            <button type="button" mat-raised-button (click)="cancel()">Cancel</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,34 @@
+<mat-form-field class="margin-right-tenpixel">
+    <input type="text" matInput placeholder="Filter" name="filter" (keyup)="onFilterChange()" [(ngModel)]="filter" required>
+</mat-form-field>
+<br>
+<table mat-table [dataSource]="filteredRecords" class="mat-elevation-z8">
+    <ng-container matColumnDef="select">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+            <span (click)="onSelect(element)" class="hand-curson green-background">Select</span>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let element">{{element.ItemName}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="measuredby">
+        <th mat-header-cell *matHeaderCellDef>Measured By</th>
+        <td mat-cell *matCellDef="let element">{{element.MeasuredBy}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="qty">
+        <th mat-header-cell *matHeaderCellDef>Qty/m/f</th>
+        <td mat-cell *matCellDef="let element">{{element.Qty}}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+    </tr>
+</table>
+<br>
+<br>
+<button mat-raised-button (click)="onClose()">Close</button>

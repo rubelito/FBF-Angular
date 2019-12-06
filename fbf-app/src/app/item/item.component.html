@@ -1,0 +1,90 @@
+<div class="row center-align">
+    <div>
+        <!-- <button class="margin-right-tenpixel" [disabled]="!(account.Role == 'Administrator' || account.Role == 'Member')" mat-raised-button>In</button>
+        <button class="margin-right-tenpixel" [disabled]="!(account.Role == 'Administrator' || account.Role == 'Member')" mat-raised-button>Out</button>&nbsp; -->
+        <!-- <button class="margin-right-tenpixel" mat-raised-button>View History</button> -->
+        <button class="margin-right-tenpixel" mat-raised-button>Print</button>
+    </div>
+    <mat-divider></mat-divider>
+    <div>
+        <mat-form-field class="margin-right-tenpixel">
+            <input type="text" matInput [(ngModel)]="filter" placeholder="search......">
+        </mat-form-field>
+        <button mat-raised-button (click)="search()">Search</button>
+        <mat-divider></mat-divider>
+        <div>
+            &nbsp; &nbsp; <label>Criteria : </label>
+            <mat-radio-group [(ngModel)]="selectedCriteria">
+                <mat-radio-button class="margin-right-tenpixel" *ngFor="let c of criterias" [value]="c">
+                    {{c}}
+                </mat-radio-button>
+            </mat-radio-group>
+            <br>
+        </div>
+        <div class="search-panel">
+            <label>Status : </label>
+            <mat-radio-group [(ngModel)]="selectedStatus">
+                <mat-radio-button class="margin-right-tenpixel" *ngFor="let s of status" [value]="s">
+                    {{s}}
+                </mat-radio-button>
+            </mat-radio-group>
+        </div>
+        <div class="search-order-panel margin-top-tenpixel">
+            <label>Order By: </label>
+            <mat-radio-group [(ngModel)]="orderBy">
+                <mat-radio-button class="margin-right-tenpixel" *ngFor="let o of orders" [value]="o">
+                    {{o}}
+                </mat-radio-button>
+            </mat-radio-group>
+        </div>
+    </div>
+    <mat-divider></mat-divider>
+    <mat-paginator #paginator [pageSize]="pageSize" [pageSizeOptions]="[10, 20, 30, 40, 50]" [showFirstLastButtons]="true"
+        [length]="totalRecords" [pageIndex]="currentPage" (page)="pageEvent($event)"> </mat-paginator>
+    <div class="row center-align">
+        <table mat-table [dataSource]="records" class="mat-elevation-z8">
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef>Id</th>
+                <td mat-cell *matCellDef="let element">
+                    {{element.Id}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="itemdesc">
+                <th mat-header-cell *matHeaderCellDef>Description</th>
+                <td mat-cell *matCellDef="let element">{{element.Name}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="measuredby">
+                <th mat-header-cell *matHeaderCellDef>Measured By</th>
+                <td mat-cell *matCellDef="let element">{{element.MeasuredBy}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="stock">
+                <th mat-header-cell *matHeaderCellDef>Stocks</th>
+                <td mat-cell *matCellDef="let element">{{element.Qty}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="threshold">
+                <th mat-header-cell *matHeaderCellDef>Threshold</th>
+                <td mat-cell *matCellDef="let element">{{element.Threshold}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="inout">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element">
+                    <button class="margin-right-tenpixel" [disabled]="!(account.Role == 'Administrator' || account.Role == 'Member')"
+                        (click)="onClickIn(element)" mat-raised-button>In</button>
+                    <button class="margin-right-tenpixel" [disabled]="!(account.Role == 'Administrator' || account.Role == 'Member')"
+                        (click)="onClickOut(element)" mat-raised-button>Out</button>
+                    <button class="margin-right-tenpixel" [disabled]="!(account.Role == 'Administrator' || account.Role == 'Member')"
+                        (click)="viewHistory(element)" mat-raised-button>Histories</button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+            </tr>
+        </table>
+    </div>
+</div>

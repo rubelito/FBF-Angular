@@ -1,0 +1,12 @@
+.in {
+    background-color: green !important;
+}
+
+.out {
+    background-color: pink !important;
+    
+}
+
+.returned {
+    background-color: orange !important;
+}

@@ -1,0 +1,11 @@
+<div>
+    <ul class="nav">
+        <li><a class="navlink" [routerLink]="['/dr']">Delivery Receipt</a></li>
+        <li><a class="navlink" [routerLink]="['/returneditem']">Returned Items</a></li>
+        <li><a class="navlink" [routerLink]="['/item']">Items</a></li>
+        <li><a class="navlink" [routerLink]="['/maintenance']">Maintenance</a></li>
+        <li><a class="navlink" [routerLink]="['/report']">Report</a></li>
+        <li *ngIf="account.Success"><span>{{account.UserName}}</span> : <span (click)="logOut()">Logout</span></li>
+        <li *ngIf="!account.Success"><span (click)="logIn()">Login</span></li>
+    </ul>
+</div>

@@ -1,0 +1,15 @@
+.nav > li {
+    display: inline-block;
+    background-color: teal;
+    padding: 10px;
+}
+
+.nav > li > .navlink {
+    display: inline-block;
+    background-color: bisque;
+    text-decoration: none;
+    width: 130px;
+    margin-left: 15px;
+    padding: 8px
+}
+

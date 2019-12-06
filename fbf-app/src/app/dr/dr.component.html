@@ -1,0 +1,81 @@
+<div class="row">
+    <div class="left-align">
+        <button class="margin-right-tenpixel" [disabled]="!(account.Role == 'Administrator' || account.Role == 'Member')"
+            (click)="onClickSDR()" mat-raised-button>New SDR</button>
+        <button class="margin-right-tenpixel" [disabled]="!(account.Role == 'Administrator' || account.Role == 'Member')"
+            (click)="onClickDR()" mat-raised-button>New DR</button>
+    </div>
+    <mat-divider class="divider-margin"></mat-divider>
+    <div>
+        <mat-form-field class="margin-right-tenpixel">
+            <mat-label>Receipt</mat-label>
+            <mat-select [(ngModel)]="selectedReceipt" name="selectedReceipt">
+                <mat-option *ngFor="let r of receiptTypes" [value]="r.id">{{r.name}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="margin-right-tenpixel">
+            <input type="text" [(ngModel)]="drNumberSearch" name="strSearch" matInput placeholder="DR number">
+        </mat-form-field>
+        <button type="button" mat-raised-button (click)="drSearch()">Search</button>
+        &nbsp;
+        <label>Order By: </label>
+        <mat-radio-group name="orders" [(ngModel)]="orderBy">
+            <mat-radio-button class="margin-right-tenpixel" *ngFor="let o of orders" [value]="o.id">
+                {{o.name}}
+            </mat-radio-button>
+        </mat-radio-group>
+    </div>
+    <div class="row">
+        <mat-paginator #paginator [pageSize]="pageSize" [pageSizeOptions]="[10, 20, 30, 40, 50]" [showFirstLastButtons]="true"
+            [length]="totalRecords" [pageIndex]="currentPage" (page)="pageEvent($event)"> </mat-paginator>
+        <table mat-table [dataSource]="records" class="mat-elevation-z8">
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef>Id</th>
+                <td mat-cell *matCellDef="let element">
+                    {{element.Id}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="sdr">
+                <th mat-header-cell *matHeaderCellDef>(S)DR #</th>
+                <td mat-cell *matCellDef="let element">{{element.DROrSDR}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="suppliercustomer">
+                <th mat-header-cell *matHeaderCellDef>Supplier/Customer</th>
+                <td mat-cell *matCellDef="let element">{{element.SupplierOrCustomerName}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="type">
+                <th mat-header-cell *matHeaderCellDef>Type</th>
+                <td mat-cell *matCellDef="let element">{{element.Type}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="date">
+                <th mat-header-cell *matHeaderCellDef>Date</th>
+                <td mat-cell *matCellDef="let element">{{element.Date}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="returnhistory">
+                <th mat-header-cell *matHeaderCellDef>Return History</th>
+                <td mat-cell *matCellDef="let element">{{element.ReturnHistory}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="createdby">
+                <th mat-header-cell *matHeaderCellDef>Created By</th>
+                <td mat-cell *matCellDef="let element">{{element.CreatedBy}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="edit">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element">
+                    <button class="margin-right-tenpixel" (click)="onEdit(element)" mat-raised-button>Edit</button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+            </tr>
+        </table>
+    </div>
+</div>

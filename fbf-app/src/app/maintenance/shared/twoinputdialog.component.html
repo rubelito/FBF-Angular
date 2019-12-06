@@ -1,0 +1,16 @@
+<form #supplierForm="ngForm" (ngSubmit)="onSave(supplierForm.value)" 
+autocomplete="off" novalidate>
+    <div mat-dialog-content>
+        <p>{{data.title}}</p>
+        <mat-form-field class="margin-right-tenpixel">
+            <input type="text" matInput [placeholder]="nameLabel" name="dataEntity.Name" [(ngModel)]="dataEntity.Name" required>
+        </mat-form-field>
+        <mat-form-field class="margin-right-tenpixel">
+            <input type="text" matInput placeholder="Address" name="dataEntity.Address" [(ngModel)]="dataEntity.Address" required>
+        </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-raised-button [disabled]="supplierForm.invalid" >Save</button>
+        <button type="button" mat-raised-button (click)="onCancel()">Cancel</button>
+    </div>
+</form>
